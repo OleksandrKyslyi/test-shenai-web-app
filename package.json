@@ -6,8 +6,8 @@
     "serve": "^14.2.4"
   },
   "scripts": {
-    "build": "rm -rf build && mkdir build && cp -r src/* ./shenai-sdk build/",
-    "serve": "serve -s build --config=../serve.json",
+    "build": "rm -rf public && mkdir public && cp -r src/* ./shenai-sdk public/",
+    "serve": "serve -s public --config=../serve.json",
     "start": "yarn build && yarn serve"
   }
 }
