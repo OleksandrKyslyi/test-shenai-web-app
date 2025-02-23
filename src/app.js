@@ -24,7 +24,7 @@ async function initialize() {
 
         shenai.initialize(API_KEY, USER_ID, {}, (result) => {
             if (result === shenai.InitializationResult.OK) {
-                console.log("Shen.AI initialized (license activated)");
+               // console.log("Shen.AI initialized (license activated)");
                 document.getElementById("stage").className = "state-loaded";
                 beginPolling(shenai);
                 document
@@ -42,6 +42,8 @@ async function initialize() {
             } else {
                 error("Shen.AI license activation error " + result.toString());
             }
+
+            shenai.setShowUserInterface(false);
         });
     } catch (e) {
         error("Error: " + e);
@@ -121,13 +123,13 @@ function presentResults(results) {
             i.end_location_sec.toFixed(3),
             i.duration_ms.toString(),
         ]);
-        const download = document.getElementById("download-intervals");
-        download.href = makeCsvHref(csvColumnNames, csvDataRows);
-        showElement(download);
-        sessionStorage.setItem(
-            "intervals",
-            csvDataRows.map((row) => row.join(",")).join(" ")
-        );
+      // const download = document.getElementById("download-intervals");
+      //   // download.href = makeCsvHref(csvColumnNames, csvDataRows); ---
+      //   showElement(download);
+      //   sessionStorage.setItem(
+      //       "intervals",
+      //       csvDataRows.map((row) => row.join(",")).join(" ")
+      //   );
     }
     document.getElementById("instruction").innerText = "Measurement complete!";
     document.getElementById("heart-rate").innerText = "";
