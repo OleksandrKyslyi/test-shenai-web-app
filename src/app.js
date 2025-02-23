@@ -136,7 +136,28 @@ function presentResults(results) {
     document.getElementById("heart-rate").innerText = "";
     document.getElementById("progress").innerText = "";
 
-    sendDataToFlutter(results.toString());
+    var breath = results.breathing_rate_bpm;
+    var hrv = results.hrv_sdnn_ms
+    var heartRate = results.heart_rate_bpm
+    var cardiac_workload_mmhg_per_sec = results.cardiac_workload_mmhg_per_sec
+    var hrv_lnrmssd_ms = results.hrv_lnrmssd_ms
+    var diastolic_pressure = results.diastolic_blood_pressure_mmhg
+    var systolic_pressure = results.systolic_blood_pressure_mmhg
+    var stress_index = results.stress_index
+    var parasympathetic_activity = results.parasympathetic_activity
+
+    let formatedData = `{ breathing_rate_bpm: ${breath},
+    hrv_sdnn_ms: ${hrv},
+    heart_rate_bpm: ${heartRate},
+    cardiac_workload_mmhg_per_sec: ${cardiac_workload_mmhg_per_sec},
+    hrv_lnrmssd_ms: ${hrv_lnrmssd_ms},
+    diastolic_pressure: ${diastolic_pressure},
+    systolic_pressure: ${systolic_pressure},
+    stress_index: ${stress_index},
+    parasympathetic_activity: ${parasympathetic_activity}
+    }`
+
+    sendDataToFlutter(formatedData);
 }
 
 function sendDataToFlutter(data) {
