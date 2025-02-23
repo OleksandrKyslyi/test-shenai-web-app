@@ -44,6 +44,7 @@ async function initialize() {
             }
 
             shenai.setShowUserInterface(false);
+            shenai.setOnboardingMode(false);
         });
     } catch (e) {
         error("Error: " + e);
