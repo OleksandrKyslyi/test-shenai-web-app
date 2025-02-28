@@ -145,6 +145,10 @@ function presentResults(results) {
     var systolic_pressure = results.systolic_blood_pressure_mmhg
     var stress_index = results.stress_index
     var parasympathetic_activity = results.parasympathetic_activity
+    var bmi_kg_per_m2 = results.bmi_kg_per_m2
+    var age_years = results.age_years
+    var height_cm = results.height_cm
+    var weight_kg = results.weight_kg
 
     let formatedData = `{ breathing_rate_bpm: ${breath},
     hrv_sdnn_ms: ${hrv},
@@ -154,7 +158,11 @@ function presentResults(results) {
     diastolic_pressure: ${diastolic_pressure},
     systolic_pressure: ${systolic_pressure},
     stress_index: ${stress_index},
-    parasympathetic_activity: ${parasympathetic_activity}
+    parasympathetic_activity: ${parasympathetic_activity},
+    bmi_kg_per_m2: ${bmi_kg_per_m2},
+    age_years: ${age_years},
+    height_cm: ${height_cm},
+    weight_kg: ${weight_kg}
     }`
 
     sendDataToFlutter(formatedData);
