@@ -2,6 +2,7 @@ import CreateShenaiSDK from "./shenai-sdk/index.mjs";
 
 const API_KEY = "0af5ec6c6814499085abb26277d0917c";
 const USER_ID = "";
+let shenai;
 
 function error(message) {
     document.getElementById("stage").className = "state-error";
@@ -18,10 +19,13 @@ function hideElement(elem) {
 
 async function initialize() {
     try {
-        const shenai = await CreateShenaiSDK({
+        shenai = await CreateShenaiSDK({
             onRuntimeInitialized: () => console.log("Shen.AI SDK ready"),
         });
 
+        shenai.setShowUserInterface(false);
+        shenai.setOnboardingMode(false);
+        
         shenai.initialize(API_KEY, USER_ID, {}, (result) => {
             if (result === shenai.InitializationResult.OK) {
                // console.log("Shen.AI initialized (license activated)");
@@ -42,9 +46,6 @@ async function initialize() {
             } else {
                 error("Shen.AI license activation error " + result.toString());
             }
-
-            shenai.setShowUserInterface(false);
-            shenai.setOnboardingMode(false);
         });
     } catch (e) {
         error("Error: " + e);
@@ -171,6 +172,7 @@ function presentResults(results) {
 function sendDataToFlutter(data) {
     if (window.flutter_inappwebview) {
         window.flutter_inappwebview.callHandler('sendDataHandler', data);
+        shenai.reset();
     }
 }
 
